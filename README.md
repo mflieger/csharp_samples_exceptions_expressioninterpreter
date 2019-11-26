@@ -62,7 +62,7 @@ Zu behandelnde Fehlersituationen:
  
     * Division durch Null
 
-      ![Übersicht](./images/screenshot-03.png)
+      ![Übersicht](./images/screenshot-04.png)
 
  
 ## Unittests
