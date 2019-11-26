@@ -15,17 +15,33 @@ Diesmal können Sie nicht davon ausgehen, dass keine Eingabe- und Datenfehler ge
 
 Folgende Randbedingungen sind zu berücksichtigen:
 
-  * Die Ausdrücke sind in einzeiligen Textdateien, die sich im bin\debug-Verzeichnis befinden gespeichert. Die Dateierweiterung lautet auf „txt“ und muss bei der Eingabe des Dateinamens nicht angegeben werden.
-  * Jede Datei enthält genau eine Zeile mit einem zweistelligen mathematischen Ausdruck (eine der vier Grundrechnungsarten)
   * Jeder Ausdruck hat genau zwei Operanden (leftOperand, rightOperand) und einen Operator (op)
   * Jeder Operand kann eine Ganzzahl oder eine Gleitkommazahl sein. Bei Gleitkommazahlen muss vor und hinter dem Komma eine Ziffer stehen
   * Vor, zwischen und hinter den Operanden und dem Operator können beliebig viele (auch null) Leerzeichen stehen
-  * Bei der Auswertung des Ausdrucks („parsen“) ist Codeverdopplung natürlich zu vermeiden (Beispiele: Parsen linker und rechter Operand, Parsen einer Zahl)
+  * Bei der Auswertung des Ausdrucks ("parsen") ist Codeverdopplung natürlich zu vermeiden (Beispiele: Parsen linker und rechter Operand, Parsen einer Zahl)
   * Der Ausdruck muss dem folgenden Muster entsprechen, um gültig zu sein:
 	
     ```
     { }[-]{ }D{D}[,D{D}]{ }(+|-|*|/){ }[-]{ }D{D}[,D{D}]{ }
     ```
+  * Beispiele für Ausdrücke
+    * Fehlerfrei:
+      ```
+      "      5,7 / 3,5  "
+      ```
+    * Operator fehlerhaft:
+      ```
+      " 22 a 37  "
+      ```
+    * Fehlerhaft:
+      ```
+      "5,7 / 3,  "
+      ```
+    * Division durch Null:
+      ```
+      "22 / 0.0  "
+      ```
+
 
 Zu behandelnde Fehlersituationen:
 
@@ -52,25 +68,3 @@ Zu behandelnde Fehlersituationen:
 ## Unittests
 
 Unittests überprüfen die Funktionalität des Expressioninterpreters. 
-
-
-
-## Beispiele
-
-
-  * Fehlerfrei:
-    ```
-    "      5,7 / 3,5  "
-    ```
-  * Operator fehlerhaft:
-    ```
-    " 22 a 37  "
-    ```
-  * Fehlerhaft:
-    ```
-    "5,7 / 3,  "
-    ```
-  * Division durch Null:
-    ```
-    "22 / 0.0  "
-    ```
