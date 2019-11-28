@@ -71,7 +71,44 @@ namespace ExpressionInterpreter.Logic
         /// <returns></returns>
         private double ScanNumber(ref int pos)
         {
-            throw new NotImplementedException();
+            int scanNum1;
+            double result = 0;
+            bool isPositive = true;
+
+            if(ExpressionText[pos] == '-')
+            {
+                isPositive = false;
+            }
+
+            scanNum1 = ScanInteger(ref pos);
+            if(ExpressionText[pos] == ',')
+            {
+                int scanNum2 = ScanInteger(ref pos);
+                int tmp = scanNum2;
+                int count = 1;
+                while(tmp != 0)
+                {
+                    tmp = tmp / 10;
+                    count *= 10;
+                    if(tmp == 0)
+                    {
+                        count *= 10;
+                    }
+                }
+                scanNum2 = scanNum2 / count;
+                result = scanNum1 + scanNum2;
+            }
+            else
+            {
+                result = scanNum1;
+            }
+
+            if(isPositive && result > 0)
+            {
+                result = result * -1;
+            }
+
+            return result;
         }
 
         /// <summary>
