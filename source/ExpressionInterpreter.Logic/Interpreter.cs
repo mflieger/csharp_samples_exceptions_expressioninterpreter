@@ -78,6 +78,7 @@ namespace ExpressionInterpreter.Logic
             if(ExpressionText[pos] == '-')
             {
                 isPositive = false;
+                SkipBlanks(ref pos);
             }
 
             scanNum1 = ScanInteger(ref pos);
@@ -119,14 +120,11 @@ namespace ExpressionInterpreter.Logic
         private int ScanInteger(ref int pos)
         {
             int number = 0;
-            if (ExpressionText[pos] == ' ')
-            {
-                SkipBlanks(ref pos);
-            }
 
             while(char.IsDigit(ExpressionText[pos]))
             {
                 number = number*10 + (ExpressionText[pos]);
+                pos++;
             }
 
             return number;
