@@ -45,7 +45,24 @@ namespace ExpressionInterpreter.Logic
         /// </summary>
         public double Calculate()
         {
-            throw new NotImplementedException();
+            double result = 0;
+            switch(_op)
+            {
+                case '+':
+                    result = OperandLeft + OperandRight;
+                    break;
+                case '-':
+                    result = OperandLeft - OperandRight;
+                    break;
+                case '*':
+                    result = OperandLeft * OperandRight;
+                    break;
+                case '/':
+                    result = OperandLeft / OperandRight;
+                    break;
+            }
+
+            return result;
         }
 
         /// <summary>
