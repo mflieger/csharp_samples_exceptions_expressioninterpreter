@@ -60,7 +60,7 @@ namespace ExpressionInterpreter.Logic
         /// </summary>
         public void ParseExpressionStringToFields()
         {
-            //hello
+            throw new NotImplementedException();
         }
 
         /// <summary>
