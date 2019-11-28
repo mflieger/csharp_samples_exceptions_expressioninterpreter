@@ -90,7 +90,10 @@ namespace ExpressionInterpreter.Logic
         /// <param name="pos"></param>
         private void SkipBlanks(ref int pos)
         {
-            throw new NotImplementedException();
+            while(ExpressionText[pos] == ' ' && pos < ExpressionText.Length)
+            {
+                pos++;
+            }
         }
 
         /// <summary>
