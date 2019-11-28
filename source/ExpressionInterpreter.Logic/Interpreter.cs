@@ -81,7 +81,18 @@ namespace ExpressionInterpreter.Logic
         /// <returns></returns>
         private int ScanInteger(ref int pos)
         {
-            throw new NotImplementedException();
+            int number = 0;
+            if (ExpressionText[pos] == ' ')
+            {
+                SkipBlanks(ref pos);
+            }
+
+            while(char.IsDigit(ExpressionText[pos]))
+            {
+                number = number*10 + (ExpressionText[pos]);
+            }
+
+            return number;
         }
 
         /// <summary>
