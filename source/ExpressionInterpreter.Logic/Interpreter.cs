@@ -5,7 +5,7 @@ namespace ExpressionInterpreter.Logic
 {
     public class Interpreter
     {
-        //Hallo Bernhard!
+        //Hallo Bernhard! Und So
 
         private double _operandLeft;
         private double _operandRight;
