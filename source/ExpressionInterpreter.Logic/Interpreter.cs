@@ -60,7 +60,21 @@ namespace ExpressionInterpreter.Logic
         /// </summary>
         public void ParseExpressionStringToFields()
         {
-            //gggggggggg
+            int pos = 0;
+            _operandLeft = GetOperand(ref pos);
+            _op = ExpressionText[pos];
+            _operandRight = GetOperand(ref pos);
+        }
+
+        private double GetOperand(ref int pos)
+        {
+            double result = 0;
+
+            SkipBlanks(ref pos);
+            result = ScanNumber(ref pos);
+            SkipBlanks(ref pos);
+
+            return result;
         }
 
         /// <summary>
