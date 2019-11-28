@@ -5,7 +5,8 @@ namespace ExpressionInterpreter.Logic
 {
     public class Interpreter
     {
-        //Hallo Bernhard! Und So
+        //Hallo Bernhard!
+        //asdfasdfasdf
 
         private double _operandLeft;
         private double _operandRight;
@@ -18,17 +19,17 @@ namespace ExpressionInterpreter.Logic
 
         public double OperandLeft
         {
-            get { throw new NotImplementedException(); }
+            get { return _operandLeft; }
         }
 
         public double OperandRight
         {
-            get { throw new NotImplementedException(); }
+            get { return _operandRight; }
         }
 
         public char Op
         {
-            get { throw new NotImplementedException(); }
+            get { return _op; }
         }
 
 
