@@ -102,19 +102,21 @@ namespace ExpressionInterpreter.Logic
         /// <returns></returns>
         private double ScanNumber(ref int pos)
         {
-            int scanNum1;
+            int scanNum1 = 0;
             double result = 0;
             bool isPositive = true;
 
             if(ExpressionText[pos] == '-')
             {
                 isPositive = false;
+                pos++;
                 SkipBlanks(ref pos);
             }
 
             scanNum1 = ScanInteger(ref pos);
             if(ExpressionText[pos] == ',')
             {
+                pos++;
                 int scanNum2 = ScanInteger(ref pos);
                 int tmp = scanNum2;
                 int count = 1;
