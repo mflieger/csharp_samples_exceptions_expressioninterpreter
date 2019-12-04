@@ -59,8 +59,17 @@ namespace ExpressionInterpreter.Logic
                     result = OperandLeft * OperandRight;
                     break;
                 case '/':
-                    result = OperandLeft / OperandRight;
+                    if(OperandRight != 0)
+                    {
+                        result = OperandLeft / OperandRight;
+                    }
+                    else
+                    {
+                        throw new DivideByZeroException("Division durch 0 ist nicht erlaubt");
+                    }
                     break;
+                default:
+                    throw new Exception("Operant ist falsch gewählt!");
             }
 
             return result;
@@ -112,6 +121,8 @@ namespace ExpressionInterpreter.Logic
                 case '/':
                     result = '/';
                     break;
+                default:
+                    throw new Exception($"{ExpressionText[pos]} ist nicht erlaubt");
             }
             pos++;
 
