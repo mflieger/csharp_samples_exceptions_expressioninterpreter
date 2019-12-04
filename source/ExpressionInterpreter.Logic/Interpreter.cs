@@ -89,12 +89,33 @@ namespace ExpressionInterpreter.Logic
             double result = 0;
 
             SkipBlanks(ref pos);
-            result = ExpressionText[pos];
+            result = GetOp(ref pos);
             SkipBlanks(ref pos);
 
             return result;
         }
+        
+        private char GetOp(ref int pos)
+        {
+            char result;
+            switch(ExpressionText[pos])
+            {
+                case '+':
+                    result = '+';
+                    break;
+                case '-':
+                    result = '-';
+                    break;
+                case '*':
+                    result = '*';
+                    break;
+                case '/':
+                    result = '/';
+                    break;
+            }
 
+            return result;
+        }
         /// <summary>
         /// Ein Double muss mit einer Ziffer beginnen. Gibt es Nachkommastellen,
         /// müssen auch diese mit einer Ziffer beginnen.
@@ -103,7 +124,7 @@ namespace ExpressionInterpreter.Logic
         /// <returns></returns>
         private double ScanNumber(ref int pos)
         {
-            int scanNum1 = 0;
+            double scanNum1 = 0;
             double result = 0;
             bool isPositive = true;
 
@@ -118,8 +139,8 @@ namespace ExpressionInterpreter.Logic
             if (ExpressionText[pos] == ',')
             {
                 pos++;
-                int scanNum2 = ScanInteger(ref pos);
-                int tmp = scanNum2;
+                double scanNum2 = ScanInteger(ref pos);
+                double tmp = scanNum2;
                 int count = 1;
                 while (tmp != 0)
                 {
