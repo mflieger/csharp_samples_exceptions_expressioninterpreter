@@ -88,7 +88,7 @@ namespace ExpressionInterpreter.Logic
             double result = 0;
 
             SkipBlanks(ref pos);
-            result = ScanNumber(ref pos);
+            result = ExpressionText[pos];
             SkipBlanks(ref pos);
 
             return result;
@@ -156,7 +156,7 @@ namespace ExpressionInterpreter.Logic
 
             while(char.IsDigit(ExpressionText[pos]))
             {
-                number = number*10 + (ExpressionText[pos]);
+                number = number*10 + (ExpressionText[pos]); 
                 pos++;
             }
 
