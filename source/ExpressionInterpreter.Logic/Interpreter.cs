@@ -97,7 +97,7 @@ namespace ExpressionInterpreter.Logic
         
         private char GetOp(ref int pos)
         {
-            char result;
+            char result = char.MinValue;
             switch(ExpressionText[pos])
             {
                 case '+':
@@ -140,18 +140,22 @@ namespace ExpressionInterpreter.Logic
             {
                 pos++;
                 double scanNum2 = ScanInteger(ref pos);
-                double tmp = scanNum2;
-                int count = 1;
-                while (tmp != 0)
+                //double tmp = scanNum2;
+                //int count = 1;
+                //while (tmp != 0)
+                //{
+                //    tmp = tmp / 10;
+                //    count *= 10;
+                //    if (tmp == 0)
+                //    {
+                //        count *= 10;
+                //    }
+                //}
+                while(scanNum2 > 1)
                 {
-                    tmp = tmp / 10;
-                    count *= 10;
-                    if (tmp == 0)
-                    {
-                        count *= 10;
-                    }
+                    scanNum2 = scanNum2 / 10;
                 }
-                scanNum2 = scanNum2 / count;
+                //scanNum2 = scanNum2 / count;
                 result = scanNum1 + scanNum2;
             }
             else
@@ -159,7 +163,7 @@ namespace ExpressionInterpreter.Logic
                 result = scanNum1;
             }
 
-            if (isPositive && result > 0)
+            if (!(isPositive) && result > 0)
             {
                 result = result * -1;
             }
