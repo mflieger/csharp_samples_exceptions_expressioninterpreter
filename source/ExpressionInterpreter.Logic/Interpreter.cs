@@ -10,7 +10,7 @@ namespace ExpressionInterpreter.Logic
 
         private double _operandLeft;
         private double _operandRight;
-        private char _op;  // Operator                  
+        private char _op;  // Operator   
 
         /// <summary>
         /// Eingelesener Text
@@ -239,7 +239,17 @@ namespace ExpressionInterpreter.Logic
         /// <returns></returns>
         public static string GetExceptionTextWithInnerExceptions(Exception ex)
         {
-            throw new NotImplementedException();
+            StringBuilder result = new StringBuilder();
+            int counter = 1;
+
+            result.AppendLine($"Exceptionmessage: {ex.Message}");
+            while (ex.InnerException != null)
+            {
+                ex = ex.InnerException;
+                result.AppendLine($"Inner Exception {counter}: {ex.Message}");
+                counter++;
+            }
+            return result.ToString();
         }
     }
 }
