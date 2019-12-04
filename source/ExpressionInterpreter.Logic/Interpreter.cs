@@ -215,7 +215,7 @@ namespace ExpressionInterpreter.Logic
         /// <param name="pos"></param>
         private void SkipBlanks(ref int pos)
         {
-            while (ExpressionText[pos] == ' ' && pos < ExpressionText.Length)
+            while (pos < ExpressionText.Length && ExpressionText[pos] == ' ')
             {
                 pos++;
             }
