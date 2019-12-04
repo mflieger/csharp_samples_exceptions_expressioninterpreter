@@ -35,6 +35,10 @@ namespace ExpressionInterpreter.Logic
 
         public void Parse(string expressionText)
         {
+            if(string.IsNullOrEmpty(expressionText))
+            {
+                throw new ArgumentException("Ausdruck ist null oder empty!");
+            }
             ExpressionText = expressionText;
             ParseExpressionStringToFields();
         }
@@ -59,7 +63,7 @@ namespace ExpressionInterpreter.Logic
                     result = OperandLeft * OperandRight;
                     break;
                 case '/':
-                    if(OperandRight != 0)
+                    if(_operandRight != 0)
                     {
                         result = OperandLeft / OperandRight;
                     }
@@ -153,17 +157,7 @@ namespace ExpressionInterpreter.Logic
             {
                 pos++;
                 double scanNum2 = ScanInteger(ref pos, ref count);
-                //double tmp = scanNum2;
-                //int count = 1;
-                //while (tmp != 0)
-                //{
-                //    tmp = tmp / 10;
-                //    count *= 10;
-                //    if (tmp == 0)
-                //    {
-                //        count *= 10;
-                //    }
-                //}
+                
                 while(scanNum2 > 1)
                 {
                     scanNum2 = scanNum2 / 10;
@@ -173,7 +167,7 @@ namespace ExpressionInterpreter.Logic
                     scanNum2 = scanNum2 / 10;
                     count--;
                 }
-                //scanNum2 = scanNum2 / count;
+                
                 result = scanNum1 + scanNum2;
             }
             else
@@ -215,7 +209,6 @@ namespace ExpressionInterpreter.Logic
                     breakIt = true;
                 }
             }
-
 
             return number;
         }
