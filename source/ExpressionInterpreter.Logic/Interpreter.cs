@@ -121,6 +121,8 @@ namespace ExpressionInterpreter.Logic
                 case '/':
                     result = '/';
                     break;
+                default:
+                    throw new Exception($"{ExpressionText[pos]} ist nicht erlaubt");
             }
             pos++;
 
