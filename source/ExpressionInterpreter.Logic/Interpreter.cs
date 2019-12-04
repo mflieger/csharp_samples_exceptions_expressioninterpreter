@@ -80,7 +80,7 @@ namespace ExpressionInterpreter.Logic
         {
             int pos = 0;
             _operandLeft = GetOperand(ref pos);
-            _op = ExpressionText[pos];
+            _op = GetOp(ref pos);
             _operandRight = GetOperand(ref pos);
         }
 
@@ -89,7 +89,7 @@ namespace ExpressionInterpreter.Logic
             double result = 0;
 
             SkipBlanks(ref pos);
-            result = GetOp(ref pos);
+            result = ScanNumber(ref pos);
             SkipBlanks(ref pos);
 
             return result;
@@ -113,6 +113,7 @@ namespace ExpressionInterpreter.Logic
                     result = '/';
                     break;
             }
+            pos++;
 
             return result;
         }
@@ -135,11 +136,12 @@ namespace ExpressionInterpreter.Logic
                 SkipBlanks(ref pos);
             }
 
-            scanNum1 = ScanInteger(ref pos);
+            int count = 0;
+            scanNum1 = ScanInteger(ref pos, ref count);
             if (ExpressionText[pos] == ',')
             {
                 pos++;
-                double scanNum2 = ScanInteger(ref pos);
+                double scanNum2 = ScanInteger(ref pos, ref count);
                 //double tmp = scanNum2;
                 //int count = 1;
                 //while (tmp != 0)
@@ -154,6 +156,11 @@ namespace ExpressionInterpreter.Logic
                 while(scanNum2 > 1)
                 {
                     scanNum2 = scanNum2 / 10;
+                }
+                while(count > 0)
+                {
+                    scanNum2 = scanNum2 / 10;
+                    count--;
                 }
                 //scanNum2 = scanNum2 / count;
                 result = scanNum1 + scanNum2;
@@ -176,17 +183,28 @@ namespace ExpressionInterpreter.Logic
         /// </summary>
         /// <param name="pos"></param>
         /// <returns></returns>
-        private int ScanInteger(ref int pos)
+        private int ScanInteger(ref int pos, ref int count)
         {
             int number = 0;
             int numberChanger = 0;
+            bool breakIt = false;
 
-            while (char.IsDigit(ExpressionText[pos]))
+            while (char.IsDigit(ExpressionText[pos]) && !breakIt)
             {
+                if(ExpressionText[pos] == '0')
+                {
+                    count++;
+                }
                 numberChanger = ExpressionText[pos] -48;
                 number = number * 10 + (numberChanger);
                 pos++;
+                if(pos == ExpressionText.Length)
+                {
+                    pos--;
+                    breakIt = true;
+                }
             }
+
 
             return number;
         }
