@@ -153,12 +153,13 @@ namespace ExpressionInterpreter.Logic
 
             int count = 0;
             scanNum1 = ScanInteger(ref pos, ref count);
+           
             if (ExpressionText[pos] == ',')
             {
                 pos++;
                 double scanNum2 = ScanInteger(ref pos, ref count);
-                
-                while(scanNum2 > 1)
+
+                while (scanNum2 > 1)
                 {
                     scanNum2 = scanNum2 / 10;
                 }
@@ -193,6 +194,11 @@ namespace ExpressionInterpreter.Logic
             int number = 0;
             int numberChanger = 0;
             bool breakIt = false;
+
+            if(!char.IsDigit(ExpressionText[pos]))
+            {
+                throw new ArgumentException("Ganzzahl ist fehlerhaft");
+            }
 
             while (char.IsDigit(ExpressionText[pos]) && !breakIt)
             {
