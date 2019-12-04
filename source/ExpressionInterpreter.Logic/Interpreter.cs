@@ -126,7 +126,7 @@ namespace ExpressionInterpreter.Logic
                     result = '/';
                     break;
                 default:
-                    throw new Exception($"{ExpressionText[pos]} ist nicht erlaubt");
+                    throw new Exception("Operator x ist fehlerhaft!");
             }
             pos++;
 
