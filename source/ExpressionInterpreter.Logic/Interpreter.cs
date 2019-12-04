@@ -46,7 +46,8 @@ namespace ExpressionInterpreter.Logic
         public double Calculate()
         {
             double result = 0;
-            switch(_op)
+
+            switch (_op)
             {
                 case '+':
                     result = OperandLeft + OperandRight;
@@ -106,7 +107,7 @@ namespace ExpressionInterpreter.Logic
             double result = 0;
             bool isPositive = true;
 
-            if(ExpressionText[pos] == '-')
+            if (ExpressionText[pos] == '-')
             {
                 isPositive = false;
                 pos++;
@@ -114,17 +115,17 @@ namespace ExpressionInterpreter.Logic
             }
 
             scanNum1 = ScanInteger(ref pos);
-            if(ExpressionText[pos] == ',')
+            if (ExpressionText[pos] == ',')
             {
                 pos++;
                 int scanNum2 = ScanInteger(ref pos);
                 int tmp = scanNum2;
                 int count = 1;
-                while(tmp != 0)
+                while (tmp != 0)
                 {
                     tmp = tmp / 10;
                     count *= 10;
-                    if(tmp == 0)
+                    if (tmp == 0)
                     {
                         count *= 10;
                     }
@@ -137,7 +138,7 @@ namespace ExpressionInterpreter.Logic
                 result = scanNum1;
             }
 
-            if(isPositive && result > 0)
+            if (isPositive && result > 0)
             {
                 result = result * -1;
             }
@@ -153,10 +154,12 @@ namespace ExpressionInterpreter.Logic
         private int ScanInteger(ref int pos)
         {
             int number = 0;
+            int numberChanger = 0;
 
-            while(char.IsDigit(ExpressionText[pos]))
+            while (char.IsDigit(ExpressionText[pos]))
             {
-                number = number*10 + (ExpressionText[pos]); 
+                numberChanger = ExpressionText[pos] -48;
+                number = number * 10 + (numberChanger);
                 pos++;
             }
 
@@ -169,7 +172,7 @@ namespace ExpressionInterpreter.Logic
         /// <param name="pos"></param>
         private void SkipBlanks(ref int pos)
         {
-            while(ExpressionText[pos] == ' ' && pos < ExpressionText.Length)
+            while (ExpressionText[pos] == ' ' && pos < ExpressionText.Length)
             {
                 pos++;
             }
